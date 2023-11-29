@@ -11,10 +11,11 @@ import {
 } from '../../store/reducers';
 import { combineLatest } from 'rxjs';
 import { BackendErrorMessages } from 'src/app/shared/components/backendErrorMessages.component';
+import { LoginRequestInterface } from '../../types/loginRequest.interface';
 
 @Component({
-  selector: 'mc-register',
-  templateUrl: './register.component.html',
+  selector: 'mc-login',
+  templateUrl: './login.component.html',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -23,9 +24,8 @@ import { BackendErrorMessages } from 'src/app/shared/components/backendErrorMess
     BackendErrorMessages,
   ],
 })
-export class RegisterComponent {
+export class LoginComponent {
   form = this.fb.nonNullable.group({
-    username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
@@ -38,11 +38,11 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit() {
-    const request: RegisterRequestInterface = {
+    const request: LoginRequestInterface = {
       user: this.form.getRawValue(),
     };
     this.store.dispatch(
-      authActions.register({
+      authActions.login({
         request,
       })
     );

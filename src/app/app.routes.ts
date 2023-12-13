@@ -13,4 +13,11 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('src/app/auth/auth.routes').then((m) => m.loginRoutes),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('src/app/globalFeed/globalFeed.routes').then(
+        (m) => m.globalFeedRoutes
+      ),
+  },
 ];
